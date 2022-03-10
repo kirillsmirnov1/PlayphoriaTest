@@ -25,7 +25,7 @@ namespace PlayphoriaTest.Control
             SetPositionsFromSave();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             SavePositions();
         }
