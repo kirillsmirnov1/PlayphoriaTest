@@ -14,11 +14,9 @@ namespace PlayphoriaTest.Control
         [SerializeField] private Joystick joystick;
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody rb;
-
-        private static readonly int Hands = Animator.StringToHash("hands");
+        
         private static readonly int Speed = Animator.StringToHash("speed");
-
-        private bool _showHands;
+        
         private Vector2 _input;
         private float _inputMagnitude;
 
@@ -28,16 +26,10 @@ namespace PlayphoriaTest.Control
             rb ??= GetComponent<Rigidbody>();
         }
 
-        private void Awake()
-        {
-            SetHandsAnimation();
-        }
-
         private void Update()
         {
             GetInput();
             SetAnimatorSpeed();
-            HandleDebugHandsInput();
         }
 
         private void FixedUpdate()
@@ -60,27 +52,6 @@ namespace PlayphoriaTest.Control
         {
             rb.MoveRotation(Quaternion.Euler(0, 180-_input.ToAngleInDegrees(), 0));
             rb.MovePosition(rb.position + transform.forward * (_inputMagnitude * speedMod * Time.fixedDeltaTime));
-        }
-
-        private void HandleDebugHandsInput()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _showHands = true;
-                SetHandsAnimation();
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                _showHands = false;
-                SetHandsAnimation();
-            }
-        }
-
-        private void SetHandsAnimation()
-        {
-            var handsVal = _showHands ? 1f : 0f;
-            animator.SetFloat(Hands, handsVal);
-            animator.SetLayerWeight(1, handsVal);
         }
     }
 }

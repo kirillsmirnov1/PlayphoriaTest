@@ -1231,6 +1231,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 701680225}
+    - target: {fileID: 609708373794702356, guid: 3f79cfc429f587e479a3d0be4eef7335, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2549968681924249596, guid: 3f79cfc429f587e479a3d0be4eef7335, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1279,7 +1283,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 609708373794702356, guid: 3f79cfc429f587e479a3d0be4eef7335, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f79cfc429f587e479a3d0be4eef7335, type: 3}
 --- !u!1001 &5311817790560618368
 PrefabInstance:
