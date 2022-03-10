@@ -180,7 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
+  bulletMask:
+    serializedVersion: 2
+    m_Bits: 128
   characterHandsAnimation: {fileID: 6587366826483133825}
 --- !u!114 &6587366826483133825
 MonoBehaviour:

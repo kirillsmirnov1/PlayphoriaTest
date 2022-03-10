@@ -7,6 +7,7 @@ namespace PlayphoriaTest.Control
     public class CharacterCollisionDetector : MonoBehaviour
     {
         [SerializeField] private LayerMask obstacleMask;
+        [SerializeField] private LayerMask bulletMask;
         [SerializeField] private CharacterHandsAnimation characterHandsAnimation;
 
         private void OnValidate()
@@ -20,6 +21,10 @@ namespace PlayphoriaTest.Control
             {
                 characterHandsAnimation.IterateObstacleCollisions(1);
             }
+            else if(BulletCollision(other))
+            {
+                Debug.Log("Player hit by bullet");
+            }
         }
 
         private void OnCollisionExit(Collision other)
@@ -29,6 +34,9 @@ namespace PlayphoriaTest.Control
                 characterHandsAnimation.IterateObstacleCollisions(-1);
             }
         }
+
+        private bool BulletCollision(Collision other) 
+            => MaskContainsLayer(bulletMask, other.gameObject.layer);
 
         private bool ObstacleCollision(Collision other) 
             => MaskContainsLayer(obstacleMask, other.gameObject.layer);
