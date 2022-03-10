@@ -10,7 +10,7 @@ namespace PlayphoriaTest.Control
         
         private void OnValidate()
         {
-            if (!Application.isPlaying)
+            if (!Application.isPlaying && target != null)
             {
                 transform.position = target.position + gap;
             }
