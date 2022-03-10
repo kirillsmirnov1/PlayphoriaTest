@@ -4,6 +4,7 @@ using UnityUtils.Extensions;
 
 namespace PlayphoriaTest.Control
 {
+    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Animator))]
     public class CharacterMovement : MonoBehaviour
     {
@@ -12,15 +13,19 @@ namespace PlayphoriaTest.Control
         [Header("Components")]
         [SerializeField] private Joystick joystick;
         [SerializeField] private Animator animator;
+        [SerializeField] private Rigidbody rb;
 
         private static readonly int Hands = Animator.StringToHash("hands");
         private static readonly int Speed = Animator.StringToHash("speed");
 
         private bool _showHands;
+        private Vector2 _input;
+        private float _inputMagnitude;
 
         private void OnValidate()
         {
             animator ??= GetComponent<Animator>();
+            rb ??= GetComponent<Rigidbody>();
         }
 
         private void Awake()
@@ -30,21 +35,31 @@ namespace PlayphoriaTest.Control
 
         private void Update()
         {
-            HandleJoystickInput();
+            GetInput();
+            SetAnimatorSpeed();
             HandleDebugHandsInput();
         }
 
-        private void HandleJoystickInput()
+        private void FixedUpdate()
         {
-            var input = joystick.Direction;
-            var inputMagnitude = input.magnitude;
-            
-            // Set animation speed
-            animator.SetFloat(Speed, inputMagnitude);
-            // Rotate
-            transform.rotation = Quaternion.Euler(0, 180-input.ToAngleInDegrees(), 0);
-            // Move
-            transform.position += transform.forward * (inputMagnitude * speedMod * Time.deltaTime);
+            MoveCharacter();
+        }
+
+        private void GetInput()
+        {
+            _input = joystick.Direction;
+            _inputMagnitude = _input.magnitude;
+        }
+
+        private void SetAnimatorSpeed()
+        {
+            animator.SetFloat(Speed, _inputMagnitude);
+        }
+
+        private void MoveCharacter()
+        {
+            rb.MoveRotation(Quaternion.Euler(0, 180-_input.ToAngleInDegrees(), 0));
+            rb.MovePosition(rb.position + transform.forward * (_inputMagnitude * speedMod * Time.fixedDeltaTime));
         }
 
         private void HandleDebugHandsInput()

@@ -16,12 +16,12 @@ namespace PlayphoriaTest.Control
             }
         }
 
-        private void Update() 
+        private void FixedUpdate() 
             => LerpToTarget();
 
         private void LerpToTarget()
         {
-            transform.position = Vector3.Lerp(transform.position, target.position + gap, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target.position + gap, speed * Time.fixedDeltaTime);
         }
     }
 }
