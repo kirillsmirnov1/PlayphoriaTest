@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PlayphoriaTest.Control
+namespace PlayphoriaTest.Control.Character
 {
     public class CharacterHealth : MonoBehaviour
     {

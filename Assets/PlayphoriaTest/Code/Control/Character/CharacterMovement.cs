@@ -2,7 +2,7 @@ using Joysticks;
 using UnityEngine;
 using UnityUtils.Extensions;
 
-namespace PlayphoriaTest.Control
+namespace PlayphoriaTest.Control.Character
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Animator))]

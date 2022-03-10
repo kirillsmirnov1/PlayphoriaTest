@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlayphoriaTest.Control
+namespace PlayphoriaTest.Control.Shooting
 {
     public class Turret : MonoBehaviour
     {

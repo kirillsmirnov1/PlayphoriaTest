@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlayphoriaTest.Control
+namespace PlayphoriaTest.Control.Character
 {
     [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(CharacterHandsAnimation))]
