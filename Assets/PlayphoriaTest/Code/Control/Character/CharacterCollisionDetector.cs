@@ -12,6 +12,8 @@ namespace PlayphoriaTest.Control.Character
         [SerializeField] private CharacterHandsAnimation characterHandsAnimation;
         [SerializeField] private CharacterHealth characterHealth;
         
+        public Vector3 LastBulletHitDirection { get; private set; }
+
         private void OnValidate()
         {
             characterHandsAnimation ??= GetComponent<CharacterHandsAnimation>();
@@ -26,6 +28,7 @@ namespace PlayphoriaTest.Control.Character
             }
             else if(BulletCollision(other))
             {
+                LastBulletHitDirection = (other.contacts[0].point - transform.position).normalized;
                 characterHealth.OnBulletHit();
             }
         }
