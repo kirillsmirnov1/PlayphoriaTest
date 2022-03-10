@@ -6,23 +6,21 @@ namespace PlayphoriaTest.Control.Character
     public class CharacterHandsAnimation : MonoBehaviour
     {
         [SerializeField] private Animator animator;
+        [SerializeField] private float animationChangeSpeed = 1f;
         
         private static readonly int Hands = Animator.StringToHash("hands");
         private int _obstacleCollisions;
-        
+        private float _handsValLerped;
+
         private void OnValidate()
         {
             animator ??= GetComponent<Animator>();
-        }
-        
-        private void Awake()
-        {
-            SetHandsAnimation();
         }
 
         private void Update()
         {
             HandleDebugHandsInput();
+            SetHandsAnimation();
         }
 
         private void HandleDebugHandsInput()
@@ -40,15 +38,15 @@ namespace PlayphoriaTest.Control.Character
         public void IterateObstacleCollisions(int val)
         {
             _obstacleCollisions += val;
-            SetHandsAnimation();
         }
 
         private void SetHandsAnimation()
         {
             var showHands = _obstacleCollisions > 0;
             var handsVal = showHands ? 1f : 0f;
-            animator.SetFloat(Hands, handsVal);
-            animator.SetLayerWeight(1, handsVal);
+            _handsValLerped = Mathf.Lerp(_handsValLerped, handsVal, Time.deltaTime * animationChangeSpeed);
+            animator.SetFloat(Hands, _handsValLerped);
+            animator.SetLayerWeight(1, _handsValLerped);
         }
     }
 }
