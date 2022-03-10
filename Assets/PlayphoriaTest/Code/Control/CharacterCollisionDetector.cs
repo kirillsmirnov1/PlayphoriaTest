@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace PlayphoriaTest.Control
 {
+    [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(CharacterHandsAnimation))]
     [RequireComponent(typeof(Collider))]
     public class CharacterCollisionDetector : MonoBehaviour
@@ -9,10 +10,12 @@ namespace PlayphoriaTest.Control
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private LayerMask bulletMask;
         [SerializeField] private CharacterHandsAnimation characterHandsAnimation;
-
+        [SerializeField] private CharacterHealth characterHealth;
+        
         private void OnValidate()
         {
             characterHandsAnimation ??= GetComponent<CharacterHandsAnimation>();
+            characterHealth ??= GetComponent<CharacterHealth>();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -23,7 +26,7 @@ namespace PlayphoriaTest.Control
             }
             else if(BulletCollision(other))
             {
-                Debug.Log("Player hit by bullet");
+                characterHealth.OnBulletHit();
             }
         }
 
