@@ -15,6 +15,6 @@ MonoBehaviour:
   logSave: 0
   varRefs:
   - variable: {fileID: 11400000, guid: c9a0ad298b408ec4c94967839adaef54, type: 2}
-    defaultValue: {fileID: 11400000, guid: 57e52b2901ca7de47bfdd169f05febb3, type: 2}
+    defaultValue: {fileID: 11400000, guid: c9a0ad298b408ec4c94967839adaef54, type: 2}
   - variable: {fileID: 11400000, guid: 68d4c7369b5152a4481cb837931a98b4, type: 2}
-    defaultValue: {fileID: 11400000, guid: 57e52b2901ca7de47bfdd169f05febb3, type: 2}
+    defaultValue: {fileID: 11400000, guid: 68d4c7369b5152a4481cb837931a98b4, type: 2}

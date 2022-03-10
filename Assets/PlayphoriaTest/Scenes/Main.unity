@@ -400,7 +400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c3e0049a2a13043a5d90d6441f0106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFile: {fileID: 11400000, guid: c9c246694b231324a8f6d1a650530ce7, type: 2}
+  dataArray:
+  - {fileID: 11400000, guid: c9a0ad298b408ec4c94967839adaef54, type: 2}
+  - {fileID: 11400000, guid: 68d4c7369b5152a4481cb837931a98b4, type: 2}
   saveObstaclePositions: {fileID: 251263930}
 --- !u!4 &279783783
 Transform:
