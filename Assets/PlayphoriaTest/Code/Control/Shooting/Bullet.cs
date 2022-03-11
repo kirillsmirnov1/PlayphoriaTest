@@ -1,15 +1,19 @@
+using PlayphoriaTest.Model;
 using UnityEngine;
 
 namespace PlayphoriaTest.Control.Shooting
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour, IDamageSource
     {
         [SerializeField] private float timeTillRepool = 3f;
         [SerializeField] private float speed = 50f;
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private float damage = 1;
         
         private Turret _turret;
         private float _repoolTime;
+
+        public float Damage => damage;
 
         private void OnValidate()
         {

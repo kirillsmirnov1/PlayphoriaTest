@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PlayphoriaTest.Control.Character
 {
@@ -20,7 +19,13 @@ namespace PlayphoriaTest.Control.Character
             ragdollHelper ??= GetComponent<RagdollHelper>();
         }
 
-        public void Handle()
+        private void Awake() 
+            => CharacterHealth.OnDeath += HandleDeath;
+
+        private void OnDestroy() 
+            => CharacterHealth.OnDeath -= HandleDeath;
+
+        private void HandleDeath()
         {
             ragdollHelper.ragdolled = true;
             rb.AddForce(characterCollisionDetector.LastBulletHitDirection * deathHitForce, ForceMode.VelocityChange);

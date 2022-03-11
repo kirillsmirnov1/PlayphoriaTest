@@ -1,32 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PlayphoriaTest.Control.Character
 {
-    [RequireComponent(typeof(CharacterDeath))]
     public class CharacterHealth : MonoBehaviour
     {
+        public static event Action OnDeath;
+        
         public float Health { get; private set; }
         
-        [SerializeField] private CharacterDeath characterDeath;
         [SerializeField] public float baseHealth = 10;
-        [SerializeField] private float bulletDamage = 1;
 
         private bool _dead;
-        
-        private void OnValidate()
-        {
-            characterDeath ??= GetComponent<CharacterDeath>();
-        }
 
         private void Awake()
         {
             Health = baseHealth;
+            CharacterCollisionDetector.OnDamageCollision += OnDamage;
         }
 
-        public void OnBulletHit()
+        private void OnDestroy()
         {
-            ChangeHealth(-bulletDamage);
+            CharacterCollisionDetector.OnDamageCollision -= OnDamage;
         }
+
+        private void OnDamage(float damageValue) 
+            => ChangeHealth(-damageValue);
 
         private void ChangeHealth(float val)
         {
@@ -34,7 +33,7 @@ namespace PlayphoriaTest.Control.Character
             if (Health <= 0 && !_dead)
             {
                 _dead = true;
-                characterDeath.Handle();
+                OnDeath?.Invoke();
             }
         }
     }

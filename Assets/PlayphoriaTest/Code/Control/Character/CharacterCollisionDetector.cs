@@ -1,23 +1,24 @@
+using System;
+using PlayphoriaTest.Model;
 using UnityEngine;
 
 namespace PlayphoriaTest.Control.Character
 {
-    [RequireComponent(typeof(CharacterHealth))]
     [RequireComponent(typeof(CharacterHandsAnimation))]
     [RequireComponent(typeof(Collider))]
     public class CharacterCollisionDetector : MonoBehaviour
     {
+        public static event Action<float> OnDamageCollision; 
+
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private LayerMask bulletMask;
         [SerializeField] private CharacterHandsAnimation characterHandsAnimation;
-        [SerializeField] private CharacterHealth characterHealth;
-        
+
         public Vector3 LastBulletHitDirection { get; private set; }
 
         private void OnValidate()
         {
             characterHandsAnimation ??= GetComponent<CharacterHandsAnimation>();
-            characterHealth ??= GetComponent<CharacterHealth>();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -29,7 +30,8 @@ namespace PlayphoriaTest.Control.Character
             else if(BulletCollision(other))
             {
                 LastBulletHitDirection = (other.contacts[0].point - transform.position).normalized;
-                characterHealth.OnBulletHit();
+                var damage = other.gameObject.GetComponent<IDamageSource>().Damage;
+                OnDamageCollision?.Invoke(damage);
             }
         }
 
