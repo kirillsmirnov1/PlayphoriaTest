@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityUtils.Variables;
 
-namespace PlayphoriaTest.Control
+namespace PlayphoriaTest.Control.Flow
 {
     public class SaveObstaclePositions : MonoBehaviour
     {
