@@ -56,8 +56,7 @@ namespace PlayphoriaTest.Control
             var length = Mathf.Min(obstacles.Length, positions.Length);
             for (int i = 0; i < length; i++)
             {
-                obstacles[i].position = positions[i];
-                obstacles[i].rotation = Quaternion.Euler(rotations[i]);
+                obstacles[i].SetPositionAndRotation(positions[i], Quaternion.Euler(rotations[i]));
             }
         }
 
