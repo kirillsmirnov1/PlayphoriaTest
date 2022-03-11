@@ -371,7 +371,7 @@ MonoBehaviour:
   - {fileID: 871872468}
   positions: {fileID: 11400000, guid: c9a0ad298b408ec4c94967839adaef54, type: 2}
   rotations: {fileID: 11400000, guid: 68d4c7369b5152a4481cb837931a98b4, type: 2}
-  saveDelay: 0.3
+  saveDelay: 0.5
 --- !u!1 &279783781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1194,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8285247388618814070, guid: 5dae0d7d39c4af64d9c31e0a87adc004, type: 3}
   m_PrefabInstance: {fileID: 1547612528}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1564169938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564169939}
+  - component: {fileID: 1564169940}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564169939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564169938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.7, y: 5.27, z: 3.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1793859663}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564169940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564169938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c910b96f477474fa3d8edbae96e3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6662712872678981667, guid: 8ae521473d1483b49b9041ad6ad5486f, type: 3}
+  initialBulletCount: 50
 --- !u!1 &1599153141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1482,7 @@ Transform:
   - {fileID: 22796089}
   - {fileID: 251263929}
   - {fileID: 1292534882}
+  - {fileID: 1564169939}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

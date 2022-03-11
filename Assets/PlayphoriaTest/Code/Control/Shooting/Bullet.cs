@@ -10,7 +10,7 @@ namespace PlayphoriaTest.Control.Shooting
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float damage = 1;
         
-        private Turret _turret;
+        private BulletPool _pool;
         private float _repoolTime;
 
         public float Damage => damage;
@@ -20,16 +20,11 @@ namespace PlayphoriaTest.Control.Shooting
             rb = GetComponent<Rigidbody>();
         }
 
-        private void OnEnable()
-        {
-            _repoolTime = Time.time + timeTillRepool;
-            transform.parent = null;
-        }
+        private void OnEnable() 
+            => _repoolTime = Time.time + timeTillRepool;
 
-        public void Init(Turret turret)
-        {
-            _turret = turret;
-        }
+        public void Init(BulletPool turret) 
+            => _pool = turret;
 
         private void FixedUpdate()
         {
@@ -53,6 +48,6 @@ namespace PlayphoriaTest.Control.Shooting
             => Repool();
 
         private void Repool() 
-            => _turret.Repool(this);
+            => _pool.Repool(this);
     }
 }
