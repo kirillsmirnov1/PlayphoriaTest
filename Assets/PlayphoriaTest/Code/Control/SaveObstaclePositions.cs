@@ -9,10 +9,12 @@ namespace PlayphoriaTest.Control
         [SerializeField] private Transform[] obstacles;
         [SerializeField] private Vector3ArrayVariable positions;
         [SerializeField] private Vector3ArrayVariable rotations;
-        [SerializeField] private float saveDelay = .3f;
-        
-        private float _nextSave;
 
+#if UNITY_WEBGL
+        [SerializeField] private float saveDelay = .5f;
+        private float _nextSave;
+#endif
+        
         private void OnValidate()
         {
             GetObstacleTransforms();
@@ -27,14 +29,26 @@ namespace PlayphoriaTest.Control
         {
             SetPositionsFromSave();
         }
-
+        
         private void Update()
         {
-            if (Time.time > _nextSave)
-            {
-                _nextSave = Time.time + saveDelay;
-                SavePositions();
-            }
+#if UNITY_WEBGL
+            DelayedSave();
+#endif
+        }
+
+#if UNITY_WEBGL
+        private void DelayedSave()
+        {
+            if (Time.time < _nextSave) return;
+            _nextSave = Time.time + saveDelay;
+            SavePositions();
+        }
+#endif
+
+        private void OnDestroy()
+        {
+            SavePositions();
         }
 
         private void SetPositionsFromSave()
