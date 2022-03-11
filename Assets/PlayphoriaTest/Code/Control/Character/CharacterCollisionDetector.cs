@@ -4,28 +4,22 @@ using UnityEngine;
 
 namespace PlayphoriaTest.Control.Character
 {
-    [RequireComponent(typeof(CharacterHandsAnimation))]
     [RequireComponent(typeof(Collider))]
     public class CharacterCollisionDetector : MonoBehaviour
     {
-        public static event Action<float> OnDamageCollision; 
+        public static event Action<float> OnDamageCollision;
+        public static event Action<int> OnObstacleCollision; 
 
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private LayerMask bulletMask;
-        [SerializeField] private CharacterHandsAnimation characterHandsAnimation;
 
         public Vector3 LastBulletHitDirection { get; private set; }
-
-        private void OnValidate()
-        {
-            characterHandsAnimation ??= GetComponent<CharacterHandsAnimation>();
-        }
 
         private void OnCollisionEnter(Collision other)
         {
             if (ObstacleCollision(other))
             {
-                characterHandsAnimation.IterateObstacleCollisions(1);
+                OnObstacleCollision?.Invoke(1);
             }
             else if(BulletCollision(other))
             {
@@ -39,7 +33,7 @@ namespace PlayphoriaTest.Control.Character
         {
             if (ObstacleCollision(other))
             {
-                characterHandsAnimation.IterateObstacleCollisions(-1);
+                OnObstacleCollision?.Invoke(-1);
             }
         }
 

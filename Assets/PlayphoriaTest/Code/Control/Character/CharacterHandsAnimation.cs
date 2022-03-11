@@ -17,6 +17,12 @@ namespace PlayphoriaTest.Control.Character
             animator ??= GetComponent<Animator>();
         }
 
+        private void Awake() 
+            => CharacterCollisionDetector.OnObstacleCollision += IterateObstacleCollisions;
+
+        private void OnDestroy() 
+            => CharacterCollisionDetector.OnObstacleCollision -= IterateObstacleCollisions;
+
         private void Update()
         {
             HandleDebugHandsInput();
@@ -35,7 +41,7 @@ namespace PlayphoriaTest.Control.Character
             }
         }
 
-        public void IterateObstacleCollisions(int val)
+        private void IterateObstacleCollisions(int val)
         {
             _obstacleCollisions += val;
         }
