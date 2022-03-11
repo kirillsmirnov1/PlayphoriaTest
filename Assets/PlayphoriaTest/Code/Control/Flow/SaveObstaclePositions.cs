@@ -46,7 +46,7 @@ namespace PlayphoriaTest.Control.Flow
         }
 #endif
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             SavePositions();
         }
