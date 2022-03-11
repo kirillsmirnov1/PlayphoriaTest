@@ -113,7 +113,7 @@
       "dependencies": {
         "com.unity.textmeshpro": "2.1.1"
       },
-      "hash": "2664e937441ec206ecee5afd054355b01d916718"
+      "hash": "d8ca6fc918f87e75c5dac041b60e576dfd8653d4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
