@@ -1,5 +1,7 @@
 This is test task for Playphoria.
 
+![](https://raw.githubusercontent.com/kirillsmirnov1/dump/main/playphoria.gif)
+
 [Playable build](https://kiirusha95.itch.io/playphoriatest)
 
 Requirements:
